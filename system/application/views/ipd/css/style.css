@@ -1,0 +1,137 @@
+body{
+background-color:#F4F4F4;
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+#kulit-luar{
+	margin:0 auto;
+	padding:0 auto;
+	width:100%;
+}
+#menu-atas{
+	margin:0 auto;
+	position:fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background:url(../image/bg-menu-atas.png);
+	background-repeat:repeat-x;
+	height:70px;
+	width:100%;
+	text-shadow:2px 2px 2px #999;
+}
+#menu-bawah{
+	margin:0 auto;
+	position:fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background:url(../image/bg-menu-bawah.png);
+	background-repeat:repeat-x;
+	height:70px;
+	width:100%;
+	color:#FFFFFF;
+}
+#isi-tengah{
+padding-top:70px;
+padding-bottom:70px;
+padding-left:0 auto;
+margin:0 auto;
+width:400px;
+}
+#content{
+width:900px;
+padding-top:70px;
+padding-bottom:70px;
+margin:0 auto;
+}
+#kiri{
+padding-bottom:90px;
+padding-left:0 auto;
+margin:0 auto;
+width:680px;
+float:left;
+}
+#kanan{
+padding-bottom:70px;
+padding-left:30px;
+margin:0 auto;
+width:190px;
+float:left;
+}
+.tr{
+background-color:#FFFFFF;
+}
+.tr:hover{
+background-color:#ECE9D8;
+}
+.copyright{
+text-align:center;
+margin-top:20px;
+}
+.logo{
+width:200px;
+float:left;
+margin-right:20px;
+margin-left:10px;
+}
+.texfield{
+background-color:#FFFFFF;
+}
+.button{
+background-color:#000000;
+font-size:12px;
+color:#FFFFFF;
+}
+.menu-button{
+	background-color:#ECE9D8;
+	padding: 5px;
+	margin:3px;
+	border: 1px solid #666666;
+}
+.menu-button:hover{
+	background-color:#FFCC33;
+	color:#000000;
+	border: 1px solid #666666;
+}
+#kanan a:link{
+text-decoration:none;
+color:#000000;
+}
+#kanan a:hover{
+text-decoration:none;
+color:#FFFFFF;
+}
+#kanan a:visited{
+text-decoration:none;
+color:#000000;
+}
+#kanan a:active{
+text-decoration:none;
+color:#FFFFFF;
+}
+#kiri a:link{
+text-decoration:none;
+color:#000000;
+}
+#kiri a:hover{
+text-decoration:none;
+color:#FF9900;
+}
+#kiri a:visited{
+text-decoration:none;
+color:#000000;
+}
+#kiri a:active{
+text-decoration:none;
+color:#FF9900;
+}
+h3{
+font-size:14px;
+color:#333333;
+text-shadow:2px 2px 2px #999;
+}
+.textarea{
+font-family:Arial;
+font-size:12px;
+}

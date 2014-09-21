@@ -1,0 +1,55 @@
+<?php
+session_start();
+class Administrator extends Controller {
+
+	function Administrator()
+	{
+		parent::Controller();	
+		$this->load->helper(array('form','url', 'text_helper'));
+		$this->load->database();
+	}
+	
+	function index()
+	{
+		$session=isset($_SESSION['username_admin']) ? $_SESSION['username_admin']:'';
+		if($session!=""){
+		echo "<meta http-equiv='refresh' content='0; url=".base_url()."index.php/administrator/tampiladmin'>";
+		}
+		$this->load->view('administrator/login');
+	}
+	function login()
+	{
+		$username = $this->input->post('username');
+		$pwd = $this->input->post('pwd');
+		$this->load->model('Ipd_admin');
+		$hasil = $this->Ipd_admin->Data_Login($username,$pwd);
+		if (count($hasil->result_array())>0){
+			foreach($hasil->result() as $items){
+				$session_username=$items->username."|".$items->nama."|".$items->idlink;
+			}
+			$_SESSION['username_admin']=$session_username;
+			echo "<meta http-equiv='refresh' content='0; url=".base_url()."index.php/administrator/tampiladmin'>";
+		}
+		else{
+			echo "<meta http-equiv='refresh' content='0; url=".base_url()."index.php/administrator'>";
+		}
+	}
+	function tampiladmin()
+	{
+		$session_username=isset($_SESSION['username_admin']) ? $_SESSION['username_admin']:'';
+		if($session_username==""){
+		echo "<meta http-equiv='refresh' content='0; url=".base_url()."/index.php/administrator'>";
+		}
+		$pecah=explode("|",$session_username);
+		$this->load->model('Ipd_admin');
+		$data=array();
+		$data["username"]=$pecah[0];
+		$data["nama"]=$pecah[1];
+		$data["daftar_pilihan"]=$this->Ipd_admin->Data_Admin($pecah[0]);
+		$this->load->view('administrator/daftar_pilihan',$data);
+	}
+	
+}
+
+/* End of file welcome.php */
+/* Location: ./system/application/controllers/welcome.php */

@@ -1,0 +1,33 @@
+<div id="content">
+<div id="kiri">
+
+<h3>Selamat Datang, "<? echo $nama;?>"</h3>
+<table width="100%">
+<tr><td width="100">Anda Login sebagai <b><? echo $nama;?></b>, dengan username <b><? echo $nim; ?></b></td></tr>
+</table><br />
+
+<table cellpadding="3">
+<?php
+foreach($komentar->result_array() as $item){
+}
+echo"<tr><td>Nama Dosen</td><td>:<td>".$item['dosen']."</td></tr>";
+echo"<tr><td>Nama Mata Kuliah</td><td>:</td><td>".$item['namamk']."</td></tr>";
+echo"<tr><td>Kode Mata Kuliah</td><td>:</td><td>".$item['kodemk']."</td></tr>";
+?>
+</table><br>
+
+<table style="border:1pt solid #000000;" bgcolor="#FFFFFF" cellpadding="5">
+<tr align="center" valign="middle" bgcolor="#FFCC33"><td width="50">No</td><td width="550">Komentar</td></tr>
+<?php
+$no=1;
+foreach($komentar->result_array() as $item2){
+echo"<tr align='center' valign='top'><td>$no</td><td>".$item2['komentar']."</td></tr>";
+$no++;
+}
+?>
+
+</table>
+
+
+
+</div>

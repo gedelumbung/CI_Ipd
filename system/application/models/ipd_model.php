@@ -1,0 +1,68 @@
+<?php
+class Ipd_model extends Model
+	{
+		function Ipd_model()
+		{
+			parent::Model();
+		}
+		
+		function Data_Login($user,$pass)
+		{
+			$user_bersih=mysql_real_escape_string($user);
+			$pass_bersih=mysql_real_escape_string($pass);
+			$query=$this->db->query("select * from tbllogin where username='$user_bersih' and psw=PASSWORD('$pass_bersih')");
+			
+			return $query;
+		}
+		function Data_Mk($nim)
+		{
+			$query_data_mk=$this->db->query("SELECT `tblnilai`.nim, `tblnilai`.kodemk, `tblnilai`.nidn, `tblmk`.namamk, `tblnilai`.Dosen, `tblnilai`.semester FROM `tblnilai` LEFT OUTER JOIN `tblmk` ON `tblnilai`.kodemk = `tblmk`.kode WHERE (`tblnilai`.nim='$nim') and (`tblnilai`.semester=(SELECT MAX(semester) as Maks FROM `tblnilai` WHERE nim='$nim')) ");
+			
+			return $query_data_mk;
+		}
+		function Tampil_Soal($id_dosen)
+		{
+			$query_tampil_soal=$this->db->query("select * from tblsoalipd");
+			return $query_tampil_soal;
+		}
+		function Ket_Dosen($nidn,$kodemk,$nim)
+		{
+			$query_tampil_soal=$this->db->query("SELECT `tblnilai`.nidn,`tblnilai`.dosen, `tblnilai`.kodemk, `tblmk`.namamk FROM `tblnilai` LEFT OUTER JOIN `tblmk` ON `tblmk`.kode=`tblnilai`.kodemk WHERE `tblnilai`.nidn ='$nidn' and `tblnilai`.kodemk='$kodemk' and `tblnilai`.nim='$nim' ");
+			return $query_tampil_soal;
+		}
+		function Tampil_Jawaban($id_dosen)
+		{
+			$query_tampil_jawaban=$this->db->query("SELECT * FROM tbljawabansoalipd");
+			return $query_tampil_jawaban;
+		}
+		function Cari_Id()
+		{
+			$id=0;
+			$query_cari=$this->db->query("SELECT IFNULL(MAX(idipd), 0)+1 as idipd FROM `tblipdheader`");
+			foreach($query_cari->result_array() as $item)
+			{
+			$id=$item['idipd'];
+			}
+			return $id;
+		}
+		function Simpan_Data($datainput,$query)
+		{
+			$this->db->insert('tblipdheader',$datainput);
+			$this->db->query($query);
+		}
+		function Cek_Status($nim)
+		{
+		$query_cek=$this->db->query("select nidn,kodemk from tblipdheader where nim=md5('$nim')");
+		return $query_cek;
+		}
+		function Lempar($nim,$nidn,$kodemk)
+		{
+		$query_lempar=$this->db->query("select nidn,kodemk from tblipdheader where nim=md5('$nim') and nidn='$nidn' and kodemk='$kodemk'");
+		return $query_lempar;
+		}
+		function Update_Password($nim,$pwd)
+		{
+		$this->db->query("update tbllogin set psw=PASSWORD('$pwd') where username='$nim'");
+		}
+	}
+?>	
